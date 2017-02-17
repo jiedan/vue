@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: 微软雅黑;
+            text-align: center;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+       .msg{
+           height: 30px;
+           line-height: 30px;
+       }
+        p{
+            margin-top: 5px;
+            line-height: 30px;
+            cursor: pointer;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="msg"><input type="text" v-model="text" v-cloak v-show="flag" class="msg"/></div>
+    <p @click="show" v-cloak>{{text}}</p>
+</div>
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            flag: false,
+            text: 'Editor'
+        },
+        methods: {
+            show: function () {
+                this.flag = !this.flag;
+            }
+        }
+    })
+</script>
+</body>
+</html>
+<!--
+遇到的问题：
+
+1、只有在css中设置成这样
+[v-cloak] {
+            display: none;
+        }
+才能在input一开始消失的时候显示，再次点击消失，并且文字对应在正上方
+
+2、奇怪的是：当input起初出现的时候，直接设置input的display消失，出现是可以实现的，但是位置不在正上方
+
+3、v-cloak加上这个属性，并不能直接解决{{text}}闪烁的问题，解决方法：在style中加上 [v-cloak] {
+            display: none;
+        }
+
+-->

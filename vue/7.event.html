@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+</head>
+<body>
+<div id="app" class="container">
+    <div @click="show">
+        <!-- stop 是阻止事件传播-->
+        <button class="btn btn-info" @click.stop="show">点我啊</button>
+    </div>
+    <!-- prevent 是阻止默认行为-->
+    <a href="http://www.zhufengpeixun.cn" @click.prevent="show">go zf</a>
+    <!-- 按enter时触发事件-->
+    <input type="text" @keydown.enter="show"/>
+</div>
+
+
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        methods:{
+            show:function(){
+                alert(1);
+            }
+        }
+    })
+</script>
+</body>
+</html>

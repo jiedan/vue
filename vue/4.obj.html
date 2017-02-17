@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="(o,key) in obj">
+            {{o}} {{key}}
+        </li>
+    </ul>
+</div>
+
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            obj:{name:'zfpx',age:8}
+        }
+    })
+</script>
+</body>
+</html>

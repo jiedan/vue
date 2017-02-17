@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <button @click="getData">点我啊</button>
+</div>
+
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-resource/dist/vue-resource.js">
+</script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        methods:{
+            getData:function(res){
+                this.$http.jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?',{params:{wd:'a'},jsonp:'cb'}).then(function(res){
+                    console.log(res);
+                    alert(res.data.s);
+
+                })
+            }
+
+        }
+    })
+</script>
+</body>
+</html>

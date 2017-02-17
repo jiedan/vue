@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        ul, li {
+            list-style: none;
+            border: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        nav {
+            width: 400px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .nav > li {
+            float: left;
+            width: 100px;
+            text-align: center;
+        }
+
+        .nav > li a {
+            padding: 45px;
+            line-height: 30px;
+            background: #e0e8ff;
+        }
+
+        p {
+            margin: 0 auto;
+            width: 400px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: #EEEEEE;
+        }
+
+        #app .active {
+            background: #00ca6d;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <nav>
+        <ul class="nav">
+            <li v-cloak v-for="(item,key) in content"><a href="#" :class="{active:item.active}"
+                                                         @click="changeColor(item,key)">{{item.text}}</a></li>
+        </ul>
+    </nav>
+    <p v-cloak>你选择{{active}}</p>
+</div>
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            active: 'html',
+            content: [{text: 'html', active: true}, {text: 'css', active: false}, {
+                text: 'js',
+                active: false
+            }, {text: 'react', active: false}]
+        },
+        methods: {
+            changeColor: function (item, index) {
+                this.active = item.text;
+                for (var i = 0; i < this.content.length; i++) {
+                    this.content[i].active = false;
+                }
+                this.content[index].active = true;
+            }
+        }
+    })
+</script>
+</body>
+</html>
